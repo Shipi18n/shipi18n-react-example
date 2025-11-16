@@ -2,6 +2,8 @@
 
 A minimal React application demonstrating how to integrate the [Shipi18n](https://shipi18n.com) translation API into your project.
 
+> **⚡ Quick Start Ready**: This example uses a public demo API key - no sign-up required! Just clone, install, and run. Rate limited to 10 requests/minute.
+
 ## Features
 
 This example demonstrates:
@@ -16,7 +18,7 @@ This example demonstrates:
 ## Prerequisites
 
 - Node.js 18+ installed
-- A Shipi18n API key (get one at [shipi18n.com](https://shipi18n.com))
+- No API key required - uses public demo key (10 requests/minute limit)
 
 ## Quick Start
 
@@ -33,7 +35,7 @@ cd shipi18n-react-example
 npm install
 ```
 
-### 3. Configure your API key
+### 3. Configure the API endpoint
 
 Copy the example environment file:
 
@@ -41,14 +43,14 @@ Copy the example environment file:
 cp .env.example .env
 ```
 
-Edit `.env` and add your Shipi18n API key:
+Edit `.env` and update the API URL:
 
 ```env
-VITE_SHIPI18N_API_KEY=your_api_key_here
-VITE_API_URL=https://your-api.execute-api.us-east-1.amazonaws.com
+VITE_SHIPI18N_API_KEY=41f7d39584af2c845103bb3b3ebb7631064927c4a21a40cf
+VITE_API_URL=https://your-actual-api-url.execute-api.us-east-1.amazonaws.com
 ```
 
-> **Get your API key**: Visit [shipi18n.com](https://shipi18n.com) to sign up and get your API key.
+> **Note**: This example uses the public demo API key which is rate-limited to 10 requests per minute. When user authentication is available, you'll be able to get your own API key at [shipi18n.com](https://shipi18n.com) with higher limits.
 
 ### 4. Run the development server
 
@@ -209,22 +211,33 @@ npm run preview
 
 ## Environment Variables
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `VITE_SHIPI18N_API_KEY` | Your Shipi18n API key | Yes |
-| `VITE_API_URL` | API base URL | Yes |
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `VITE_SHIPI18N_API_KEY` | Shipi18n API key | Public demo key (included) |
+| `VITE_API_URL` | API base URL | Must be configured |
+
+**Rate Limits:**
+- Public demo key: 10 requests/minute
+- Personal API key (coming soon): Higher limits based on plan
 
 ## Common Issues
 
 ### "API key is not set" error
 
-Make sure you've created a `.env` file with your API key:
+Make sure you've created a `.env` file:
 
-```env
-VITE_SHIPI18N_API_KEY=your_actual_key_here
+```bash
+cp .env.example .env
 ```
 
 Restart the dev server after creating/updating `.env`.
+
+### Rate limit errors
+
+The public demo key is limited to 10 requests per minute. If you hit the limit:
+- Wait a minute before trying again
+- Reduce the number of translations in a single request
+- When available, sign up for a personal API key with higher limits
 
 ### CORS errors
 

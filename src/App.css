@@ -40,6 +40,22 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.demo-notice {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-bottom: 0;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
 .cta-link {
   display: inline-block;
   background: white;

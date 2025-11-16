@@ -22,14 +22,19 @@ function App() {
       <header className="header">
         <h1>Shipi18n React Example</h1>
         <p>Integrate translation into your React application</p>
-        <a
-          href="https://shipi18n.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="cta-link"
-        >
-          Get Your API Key →
-        </a>
+        <div className="header-info">
+          <p className="demo-notice">
+            Using public demo key • 10 requests/min limit
+          </p>
+          <a
+            href="https://shipi18n.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cta-link"
+          >
+            Learn More →
+          </a>
+        </div>
       </header>
 
       <nav className="tabs">
