@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import BasicExample from './components/BasicExample'
-import MultiLangExample from './components/MultiLangExample'
 import JSONExample from './components/JSONExample'
-import PlaceholderExample from './components/PlaceholderExample'
 import FileTranslationExample from './components/FileTranslationExample'
 import './App.css'
 
@@ -12,9 +10,7 @@ function App() {
   const tabs = [
     { id: 'file', label: '📁 File Translation', component: FileTranslationExample },
     { id: 'basic', label: 'Basic Translation', component: BasicExample },
-    { id: 'multi', label: 'Multi-Language', component: MultiLangExample },
-    { id: 'json', label: 'JSON Translation', component: JSONExample },
-    { id: 'placeholder', label: 'Placeholders', component: PlaceholderExample }
+    { id: 'json', label: 'JSON Translation', component: JSONExample }
   ]
 
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component
