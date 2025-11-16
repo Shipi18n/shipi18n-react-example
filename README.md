@@ -2,7 +2,7 @@
 
 A minimal React application demonstrating how to integrate the [Shipi18n](https://shipi18n.com) translation API into your project.
 
-> **⚡ Quick Start Ready**: This example uses a public demo API key - no sign-up required! Just clone, install, and run. Rate limited to 10 requests/minute.
+> **🚀 Get Started in 30 Seconds**: Sign up at [shipi18n.com](https://shipi18n.com) to get your free API key instantly. No credit card required!
 
 ## Features
 
@@ -18,24 +18,32 @@ This example demonstrates:
 ## Prerequisites
 
 - Node.js 18+ installed
-- No API key required - uses public demo key (10 requests/minute limit)
+- Free API key from [shipi18n.com](https://shipi18n.com) (instant signup, no credit card)
 
 ## Quick Start
 
-### 1. Clone the repository
+### 1. Get Your Free API Key
+
+Visit [shipi18n.com](https://shipi18n.com) and enter your email to get your API key instantly:
+
+- **Free tier**: 60 requests/minute, 10,000 characters/month
+- **No credit card required**
+- **Instant access** - check your email for your API key
+
+### 2. Clone the repository
 
 ```bash
 git clone https://github.com/shipi18n/shipi18n-react-example.git
 cd shipi18n-react-example
 ```
 
-### 2. Install dependencies
+### 3. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Configure the API endpoint
+### 4. Configure your API key
 
 Copy the example environment file:
 
@@ -43,16 +51,14 @@ Copy the example environment file:
 cp .env.example .env
 ```
 
-Edit `.env` and update the API URL:
+Edit `.env` and add your API key (from the email):
 
 ```env
-VITE_SHIPI18N_API_KEY=41f7d39584af2c845103bb3b3ebb7631064927c4a21a40cf
-VITE_API_URL=https://your-actual-api-url.execute-api.us-east-1.amazonaws.com
+VITE_SHIPI18N_API_KEY=sk_live_your_api_key_here
+VITE_API_URL=https://x9527l3blg.execute-api.us-east-1.amazonaws.com
 ```
 
-> **Note**: This example uses the public demo API key which is rate-limited to 10 requests per minute. When user authentication is available, you'll be able to get your own API key at [shipi18n.com](https://shipi18n.com) with higher limits.
-
-### 4. Run the development server
+### 5. Run the development server
 
 ```bash
 npm run dev
@@ -211,14 +217,14 @@ npm run preview
 
 ## Environment Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `VITE_SHIPI18N_API_KEY` | Shipi18n API key | Public demo key (included) |
-| `VITE_API_URL` | API base URL | Must be configured |
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `VITE_SHIPI18N_API_KEY` | Your Shipi18n API key (get it at shipi18n.com) | Yes |
+| `VITE_API_URL` | API base URL | Yes |
 
 **Rate Limits:**
-- Public demo key: 10 requests/minute
-- Personal API key (coming soon): Higher limits based on plan
+- **Free tier**: 60 requests/minute, 10,000 characters/month
+- **Pro tier** (coming soon): Higher limits for production apps
 
 ## Common Issues
 
@@ -234,10 +240,10 @@ Restart the dev server after creating/updating `.env`.
 
 ### Rate limit errors
 
-The public demo key is limited to 10 requests per minute. If you hit the limit:
+The free tier is limited to 60 requests per minute. If you hit the limit:
 - Wait a minute before trying again
 - Reduce the number of translations in a single request
-- When available, sign up for a personal API key with higher limits
+- Contact us about upgrading to a Pro plan for higher limits
 
 ### CORS errors
 
