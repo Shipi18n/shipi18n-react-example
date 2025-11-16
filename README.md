@@ -8,10 +8,11 @@ A minimal React application demonstrating how to integrate the [Shipi18n](https:
 
 This example demonstrates:
 
-- ✅ **Basic text translation** to multiple languages
+- ✅ **📁 File Translation** - Upload `en.json` → Download `es.json`, `fr.json`, etc. (REALISTIC WORKFLOW!)
+- ✅ **Multi-language translation** in a single API call - translate to 12+ languages at once
 - ✅ **JSON translation** with structure preservation
-- ✅ **Multi-language translation** in a single API call
 - ✅ **Placeholder preservation** for dynamic content (`{name}`, `{{value}}`, `%s`, etc.)
+- ✅ **Basic text translation** for quick testing
 - ✅ **Error handling** and loading states
 - ✅ **Native fetch API** (zero external HTTP dependencies)
 
@@ -66,22 +67,69 @@ npm run dev
 
 The app will open at [http://localhost:3000](http://localhost:3000)
 
+## 🎯 Realistic Workflow: File Translation
+
+The **File Translation** tab shows how developers actually use Shipi18n in production:
+
+### Real-World Usage
+
+1. **Upload your locale file** (e.g., `locales/en.json`)
+2. **Select target languages** - Spanish, French, German, Japanese, etc.
+3. **Click "Translate"** - all files processed in one API call
+4. **Download translated files** - ready to drop into your `locales/` folder
+
+### Example Workflow
+
+```bash
+# Your project structure BEFORE:
+my-app/
+├── locales/
+│   └── en.json        # ✅ You have this
+└── src/
+
+# After using Shipi18n:
+my-app/
+├── locales/
+│   ├── en.json        # ✅ Original
+│   ├── es.json        # ✅ Downloaded
+│   ├── fr.json        # ✅ Downloaded
+│   ├── de.json        # ✅ Downloaded
+│   └── ja.json        # ✅ Downloaded
+└── src/
+```
+
+### What Gets Preserved
+
+- **JSON structure** - nested objects, arrays, everything
+- **Placeholders** - `{{name}}`, `{count}`, `%s`, `<0>`, etc.
+- **Keys** - only values are translated, keys stay in English
+
+### Try It Now
+
+1. Run `npm run dev`
+2. Click the **📁 File Translation** tab
+3. Upload the included `test-locale.json` file
+4. Select languages and translate
+5. Download the results!
+
 ## Project Structure
 
 ```
 shipi18n-react-example/
 ├── src/
 │   ├── lib/
-│   │   └── shipi18n.js          # API client library
+│   │   └── shipi18n.js              # API client library
 │   ├── components/
-│   │   ├── BasicExample.jsx     # Simple translation demo
-│   │   ├── MultiLangExample.jsx # Multi-language translation
-│   │   ├── JSONExample.jsx      # JSON translation
-│   │   └── PlaceholderExample.jsx # Placeholder preservation
-│   ├── App.jsx                  # Main application
-│   ├── App.css                  # Styles
-│   └── main.jsx                 # Entry point
-├── .env.example                 # Environment template
+│   │   ├── FileTranslationExample.jsx   # 📁 File upload/download (REALISTIC!)
+│   │   ├── BasicExample.jsx         # Simple translation demo
+│   │   ├── MultiLangExample.jsx     # Multi-language translation
+│   │   ├── JSONExample.jsx          # JSON translation
+│   │   └── PlaceholderExample.jsx   # Placeholder preservation
+│   ├── App.jsx                      # Main application
+│   ├── App.css                      # Styles
+│   └── main.jsx                     # Entry point
+├── test-locale.json                 # Sample file for testing
+├── .env.example                     # Environment template
 ├── package.json
 └── README.md
 ```

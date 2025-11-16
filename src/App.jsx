@@ -3,12 +3,14 @@ import BasicExample from './components/BasicExample'
 import MultiLangExample from './components/MultiLangExample'
 import JSONExample from './components/JSONExample'
 import PlaceholderExample from './components/PlaceholderExample'
+import FileTranslationExample from './components/FileTranslationExample'
 import './App.css'
 
 function App() {
-  const [activeTab, setActiveTab] = useState('basic')
+  const [activeTab, setActiveTab] = useState('file')
 
   const tabs = [
+    { id: 'file', label: '📁 File Translation', component: FileTranslationExample },
     { id: 'basic', label: 'Basic Translation', component: BasicExample },
     { id: 'multi', label: 'Multi-Language', component: MultiLangExample },
     { id: 'json', label: 'JSON Translation', component: JSONExample },
@@ -21,10 +23,10 @@ function App() {
     <div className="app">
       <header className="header">
         <h1>Shipi18n React Example</h1>
-        <p>Integrate translation into your React application</p>
+        <p>Translate your locale files with just a few clicks</p>
         <div className="header-info">
           <p className="demo-notice">
-            Using public demo key • 10 requests/min limit
+            Free tier: 60 requests/min • 10,000 chars/month
           </p>
           <a
             href="https://shipi18n.com"
@@ -32,7 +34,7 @@ function App() {
             rel="noopener noreferrer"
             className="cta-link"
           >
-            Learn More →
+            Get Your Free API Key →
           </a>
         </div>
       </header>
