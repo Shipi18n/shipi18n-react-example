@@ -9,7 +9,7 @@ A minimal React application demonstrating how to integrate the [Shipi18n](https:
 This example demonstrates:
 
 - ✅ **📁 File Translation** - Upload `en.json` → Download `es.json`, `fr.json`, etc. (REALISTIC WORKFLOW!)
-- ✅ **Multi-language translation** in a single API call - translate to 12+ languages at once
+- ✅ **Multi-language translation** in a single API call - translate to 100+ languages at once
 - ✅ **JSON translation** with structure preservation
 - ✅ **Placeholder preservation** for dynamic content (`{name}`, `{{value}}`, `%s`, etc.)
 - ✅ **Basic text translation** for quick testing
@@ -234,20 +234,30 @@ Check API health status.
 
 ## Supported Languages
 
-Shipi18n supports 100+ languages including:
+Shipi18n supports **100+ languages** via Google Cloud Translation API, including:
 
 - **es** - Spanish
 - **fr** - French
 - **de** - German
 - **ja** - Japanese
-- **zh** - Chinese
+- **zh** - Chinese (Simplified)
+- **zh-TW** - Chinese (Traditional)
 - **pt** - Portuguese
 - **ru** - Russian
 - **ar** - Arabic
 - **hi** - Hindi
 - **ko** - Korean
+- **it** - Italian
+- **nl** - Dutch
+- **pl** - Polish
+- **tr** - Turkish
+- **vi** - Vietnamese
+- **th** - Thai
+- **id** - Indonesian
+- **sv** - Swedish
+- **and 85+ more...**
 
-See the [full list of supported languages](https://shipi18n.com/docs/languages).
+See the `src/constants/languages.js` file for the complete list of 100+ supported languages.
 
 ## Building for Production
 
