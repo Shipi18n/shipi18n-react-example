@@ -1,30 +1,16 @@
 import { useState, useRef } from 'react'
 import { translateJSON } from '../lib/shipi18n'
+import { LANGUAGES, POPULAR_LANGUAGES, getLanguageName } from '../constants/languages'
 
 /**
  * FileTranslationExample - Realistic i18n workflow
  *
  * Demonstrates:
  * - Upload locale file (e.g., en.json)
- * - Select target languages
+ * - Select target languages (100+ supported)
  * - Translate entire file
  * - Download translated files
  */
-
-const POPULAR_LANGUAGES = [
-  { code: 'es', name: 'Spanish' },
-  { code: 'fr', name: 'French' },
-  { code: 'de', name: 'German' },
-  { code: 'ja', name: 'Japanese' },
-  { code: 'zh', name: 'Chinese (Simplified)' },
-  { code: 'pt', name: 'Portuguese' },
-  { code: 'ru', name: 'Russian' },
-  { code: 'ar', name: 'Arabic' },
-  { code: 'hi', name: 'Hindi' },
-  { code: 'ko', name: 'Korean' },
-  { code: 'it', name: 'Italian' },
-  { code: 'nl', name: 'Dutch' },
-]
 
 export default function FileTranslationExample() {
   const [uploadedFile, setUploadedFile] = useState(null)
@@ -34,7 +20,13 @@ export default function FileTranslationExample() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [dragActive, setDragActive] = useState(false)
+  const [showAllLanguages, setShowAllLanguages] = useState(false)
   const fileInputRef = useRef(null)
+
+  // Filter out English (source language) from displayed languages
+  const displayedLanguages = showAllLanguages
+    ? LANGUAGES.filter(lang => lang.code !== 'en')
+    : POPULAR_LANGUAGES.filter(lang => lang.code !== 'en')
 
   const handleDrag = (e) => {
     e.preventDefault()
@@ -250,8 +242,8 @@ export default function FileTranslationExample() {
           <h4 className="text-sm font-semibold text-gray-700 mb-3">
             Select Target Languages ({selectedLanguages.length} selected):
           </h4>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {POPULAR_LANGUAGES.map(lang => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-64 overflow-y-auto p-2 border border-gray-200 rounded-lg">
+            {displayedLanguages.map(lang => (
               <label
                 key={lang.code}
                 className={`flex items-center space-x-2 p-3 border-2 rounded-lg cursor-pointer transition-colors ${
@@ -272,6 +264,24 @@ export default function FileTranslationExample() {
               </label>
             ))}
           </div>
+
+          <button
+            type="button"
+            onClick={() => setShowAllLanguages(!showAllLanguages)}
+            className="mt-3 text-sm text-blue-600 hover:text-blue-700 font-medium"
+          >
+            {showAllLanguages
+              ? `Show popular languages only (${POPULAR_LANGUAGES.length - 1})`
+              : `Show all ${LANGUAGES.length - 1} languages`
+            }
+          </button>
+
+          <p className="text-xs text-gray-500 mt-2">
+            {showAllLanguages
+              ? `All ${LANGUAGES.length - 1} languages shown. Shipi18n supports 100+ languages via Google Cloud Translation API.`
+              : `Showing ${POPULAR_LANGUAGES.length - 1} popular languages. Click above to see all.`
+            }
+          </p>
         </div>
       )}
 
@@ -314,12 +324,11 @@ export default function FileTranslationExample() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {Object.entries(translations).map(([langCode, content]) => {
-              const language = POPULAR_LANGUAGES.find(l => l.code === langCode)
               return (
                 <div key={langCode} className="border-2 border-gray-200 rounded-lg p-4 bg-white">
                   <div className="flex items-center justify-between mb-3">
                     <h4 className="font-semibold text-gray-900">
-                      {language?.name || langCode} ({langCode}.json)
+                      {getLanguageName(langCode)} ({langCode}.json)
                     </h4>
                     <button
                       onClick={() => downloadFile(langCode, content)}
