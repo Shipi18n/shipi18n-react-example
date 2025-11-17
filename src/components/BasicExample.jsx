@@ -1,27 +1,13 @@
 import { useState } from 'react'
 import { translate } from '../lib/shipi18n'
-
-const POPULAR_LANGUAGES = [
-  { code: 'es', name: 'Spanish' },
-  { code: 'fr', name: 'French' },
-  { code: 'de', name: 'German' },
-  { code: 'ja', name: 'Japanese' },
-  { code: 'zh', name: 'Chinese (Simplified)' },
-  { code: 'pt', name: 'Portuguese' },
-  { code: 'ru', name: 'Russian' },
-  { code: 'ar', name: 'Arabic' },
-  { code: 'hi', name: 'Hindi' },
-  { code: 'ko', name: 'Korean' },
-  { code: 'it', name: 'Italian' },
-  { code: 'nl', name: 'Dutch' },
-]
+import { LANGUAGES, POPULAR_LANGUAGES, getLanguageName } from '../constants/languages'
 
 /**
  * BasicExample - Text translation to multiple languages
  *
  * Demonstrates:
  * - Basic API usage
- * - Multi-language selection
+ * - Multi-language selection (100+ languages)
  * - Loading states
  * - Error handling
  */
@@ -31,6 +17,12 @@ export default function BasicExample() {
   const [translations, setTranslations] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [showAllLanguages, setShowAllLanguages] = useState(false)
+
+  // Filter out English (source language) from displayed languages
+  const displayedLanguages = showAllLanguages
+    ? LANGUAGES.filter(lang => lang.code !== 'en')
+    : POPULAR_LANGUAGES.filter(lang => lang.code !== 'en')
 
   const toggleLanguage = (langCode) => {
     setSelectedLanguages(prev =>
@@ -87,8 +79,8 @@ export default function BasicExample() {
         <h4 className="text-sm font-semibold text-gray-700 mb-3">
           Select Target Languages ({selectedLanguages.length} selected):
         </h4>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {POPULAR_LANGUAGES.map(lang => (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-64 overflow-y-auto p-2 border border-gray-200 rounded-lg">
+          {displayedLanguages.map(lang => (
             <label
               key={lang.code}
               className={`flex items-center space-x-2 p-3 border-2 rounded-lg cursor-pointer transition-colors ${
@@ -109,6 +101,24 @@ export default function BasicExample() {
             </label>
           ))}
         </div>
+
+        <button
+          type="button"
+          onClick={() => setShowAllLanguages(!showAllLanguages)}
+          className="mt-3 text-sm text-blue-600 hover:text-blue-700 font-medium"
+        >
+          {showAllLanguages
+            ? `Show popular languages only (${POPULAR_LANGUAGES.length - 1})`
+            : `Show all ${LANGUAGES.length - 1} languages`
+          }
+        </button>
+
+        <p className="text-xs text-gray-500 mt-2">
+          {showAllLanguages
+            ? `All ${LANGUAGES.length - 1} languages shown. Shipi18n supports 100+ languages via Google Cloud Translation API.`
+            : `Showing ${POPULAR_LANGUAGES.length - 1} popular languages. Click above to see all.`
+          }
+        </p>
       </div>
 
       <button
@@ -130,10 +140,9 @@ export default function BasicExample() {
           <h3>Translations ({Object.keys(translations).length} languages):</h3>
           <div className="space-y-6">
             {Object.entries(translations).map(([langCode, items]) => {
-              const language = POPULAR_LANGUAGES.find(l => l.code === langCode)
               return (
                 <div key={langCode} className="language-section">
-                  <h4>{language?.name || langCode}:</h4>
+                  <h4>{getLanguageName(langCode)}:</h4>
                   <div className="translation-list">
                     {items.map((item, index) => (
                       <div key={index} className="translation-item">
