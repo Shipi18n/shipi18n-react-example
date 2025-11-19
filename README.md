@@ -57,7 +57,8 @@ Edit `.env` and add your API key (from the email):
 
 ```env
 VITE_SHIPI18N_API_KEY=sk_live_your_api_key_here
-VITE_SHIPI18N_API_URL=https://shipi18n.com/api
+# Note: Base URL without /api - it will be added automatically
+VITE_SHIPI18N_API_URL=https://x9527l3blg.execute-api.us-east-1.amazonaws.com
 ```
 
 ### 5. Run the development server
@@ -279,7 +280,7 @@ npm run preview
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `VITE_SHIPI18N_API_KEY` | Your Shipi18n API key (get it at shipi18n.com) | Yes |
-| `VITE_SHIPI18N_API_URL` | API base URL (defaults to https://shipi18n.com/api) | No |
+| `VITE_SHIPI18N_API_URL` | API base URL - do NOT include /api at the end | No |
 
 **Pricing Tiers:**
 

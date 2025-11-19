@@ -5,7 +5,7 @@
  * Uses native fetch - no external dependencies required.
  */
 
-const API_BASE_URL = import.meta.env.VITE_SHIPI18N_API_URL || 'https://shipi18n.com/api'
+const API_BASE_URL = import.meta.env.VITE_SHIPI18N_API_URL || 'https://x9527l3blg.execute-api.us-east-1.amazonaws.com'
 const API_KEY = import.meta.env.VITE_SHIPI18N_API_KEY
 
 /**
