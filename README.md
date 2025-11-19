@@ -25,9 +25,10 @@ This example demonstrates:
 
 ### 1. Get Your Free API Key
 
-Visit [shipi18n.com](https://shipi18n.com) and enter your email to get your API key instantly:
+Visit [shipi18n.com](https://shipi18n.com) and sign up to get your API key instantly:
 
-- **Free tier**: 60 requests/minute, 10,000 characters/month
+- **Free tier**: 100 translation keys, 3 languages, 10 requests/minute
+- **Unlimited characters** - we count keys, not characters!
 - **No credit card required**
 - **Instant access** - check your email for your API key
 
@@ -56,7 +57,7 @@ Edit `.env` and add your API key (from the email):
 
 ```env
 VITE_SHIPI18N_API_KEY=sk_live_your_api_key_here
-VITE_API_URL=https://x9527l3blg.execute-api.us-east-1.amazonaws.com
+VITE_SHIPI18N_API_URL=https://shipi18n.com/api
 ```
 
 ### 5. Run the development server
@@ -278,11 +279,18 @@ npm run preview
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `VITE_SHIPI18N_API_KEY` | Your Shipi18n API key (get it at shipi18n.com) | Yes |
-| `VITE_API_URL` | API base URL | Yes |
+| `VITE_SHIPI18N_API_URL` | API base URL (defaults to https://shipi18n.com/api) | No |
 
-**Rate Limits:**
-- **Free tier**: 60 requests/minute, 10,000 characters/month
-- **Pro tier** (coming soon): Higher limits for production apps
+**Pricing Tiers:**
+
+| Tier | Price | Translation Keys | Languages | Rate Limit |
+|------|-------|-----------------|-----------|------------|
+| **FREE** | $0/mo | 100 keys | 3 languages | 10 req/min |
+| **STARTER** | $9/mo | 500 keys | 10 languages | 60 req/min |
+| **PRO** | $29/mo | 10,000 keys | 100+ languages | 300 req/min |
+| **ENTERPRISE** | Custom | Unlimited | Custom | 1000+ req/min |
+
+**What's a "key"?** Each unique translation path (e.g., `app.welcome`, `auth.login`) counts as one key. Translating to multiple languages doesn't multiply the count!
 
 ## Common Issues
 
@@ -298,10 +306,17 @@ Restart the dev server after creating/updating `.env`.
 
 ### Rate limit errors
 
-The free tier is limited to 60 requests per minute. If you hit the limit:
+The free tier is limited to 10 requests per minute. If you hit the limit:
 - Wait a minute before trying again
-- Reduce the number of translations in a single request
-- Contact us about upgrading to a Pro plan for higher limits
+- Consider upgrading to STARTER ($9/mo) for 60 req/min
+- Or PRO ($29/mo) for 300 req/min
+
+### Key limit reached
+
+If you exceed your 100-key limit on the free tier:
+- Delete unused keys from your dashboard
+- Or upgrade to STARTER (500 keys) or PRO (10,000 keys)
+- Keys are unique translation paths - translating to more languages doesn't use more keys!
 
 ### CORS errors
 

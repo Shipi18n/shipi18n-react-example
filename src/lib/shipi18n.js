@@ -5,7 +5,7 @@
  * Uses native fetch - no external dependencies required.
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.shipi18n.com'
+const API_BASE_URL = import.meta.env.VITE_SHIPI18N_API_URL || 'https://shipi18n.com/api'
 const API_KEY = import.meta.env.VITE_SHIPI18N_API_KEY
 
 /**
@@ -60,8 +60,14 @@ export async function translate({
   })
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ message: response.statusText }))
-    throw new Error(error.message || `Translation failed: ${response.statusText}`)
+    const errorData = await response.json().catch(() => ({ error: { message: response.statusText } }))
+    // Handle new structured error format: { error: { code, message, status } }
+    const errorMessage = errorData.error?.message || errorData.message || `Translation failed: ${response.statusText}`
+    const errorCode = errorData.error?.code
+    const error = new Error(errorMessage)
+    error.code = errorCode
+    error.status = response.status
+    throw error
   }
 
   return response.json()
@@ -121,8 +127,14 @@ export async function translateJSON({
   })
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ message: response.statusText }))
-    throw new Error(error.message || `Translation failed: ${response.statusText}`)
+    const errorData = await response.json().catch(() => ({ error: { message: response.statusText } }))
+    // Handle new structured error format: { error: { code, message, status } }
+    const errorMessage = errorData.error?.message || errorData.message || `Translation failed: ${response.statusText}`
+    const errorCode = errorData.error?.code
+    const error = new Error(errorMessage)
+    error.code = errorCode
+    error.status = response.status
+    throw error
   }
 
   const result = await response.json()

@@ -22,7 +22,7 @@ function App() {
         <p>Translate your locale files with just a few clicks</p>
         <div className="header-info">
           <p className="demo-notice">
-            Free tier: 60 requests/min • 10,000 chars/month
+            Free tier: 100 keys • 3 languages • 10 req/min
           </p>
           <a
             href="https://shipi18n.com"
