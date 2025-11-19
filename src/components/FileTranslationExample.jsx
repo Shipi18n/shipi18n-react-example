@@ -304,6 +304,18 @@ export default function FileTranslationExample() {
           <p className="text-sm text-red-700">
             <strong>Error:</strong> {error}
           </p>
+          {error.includes('Language limit exceeded') && (
+            <div className="mt-3">
+              <a
+                href="https://shipi18n.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Upgrade Your Plan →
+              </a>
+            </div>
+          )}
         </div>
       )}
 

@@ -132,6 +132,27 @@ export default function BasicExample() {
       {error && (
         <div className="error">
           <strong>Error:</strong> {error}
+          {error.includes('Language limit exceeded') && (
+            <div style={{ marginTop: '12px' }}>
+              <a
+                href="https://shipi18n.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-block',
+                  padding: '8px 16px',
+                  backgroundColor: '#2563eb',
+                  color: 'white',
+                  textDecoration: 'none',
+                  borderRadius: '6px',
+                  fontWeight: '600',
+                  fontSize: '14px'
+                }}
+              >
+                Upgrade Your Plan →
+              </a>
+            </div>
+          )}
         </div>
       )}
 
