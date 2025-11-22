@@ -16,6 +16,7 @@ const API_KEY = import.meta.env.VITE_SHIPI18N_API_KEY
  * @param {string} [options.sourceLanguage='en'] - Source language code (e.g., 'en', 'es')
  * @param {string[]} options.targetLanguages - Array of target language codes (e.g., ['es', 'fr', 'de'])
  * @param {boolean} [options.preservePlaceholders=false] - Preserve placeholders like {name}, {{value}}, %s, etc.
+ * @param {boolean} [options.enablePluralization=true] - Auto-generate i18next plural forms (_one, _few, _many, _other)
  * @returns {Promise<Object>} Translation results keyed by language code
  *
  * @example
@@ -30,7 +31,8 @@ export async function translate({
   text,
   sourceLanguage = 'en',
   targetLanguages,
-  preservePlaceholders = false
+  preservePlaceholders = false,
+  enablePluralization = true
 }) {
   if (!API_KEY) {
     throw new Error('VITE_SHIPI18N_API_KEY environment variable is not set')
@@ -55,7 +57,8 @@ export async function translate({
       text,
       sourceLanguage,
       targetLanguages: JSON.stringify(targetLanguages),
-      preservePlaceholders: String(preservePlaceholders)
+      preservePlaceholders: String(preservePlaceholders),
+      enablePluralization: String(enablePluralization)
     })
   })
 
@@ -81,6 +84,7 @@ export async function translate({
  * @param {string} [options.sourceLanguage='en'] - Source language code
  * @param {string[]} options.targetLanguages - Array of target language codes
  * @param {boolean} [options.preservePlaceholders=false] - Preserve placeholders in values
+ * @param {boolean} [options.enablePluralization=true] - Auto-generate i18next plural forms based on CLDR rules
  * @returns {Promise<Object>} Translation results with JSON structure preserved
  *
  * @example
@@ -94,7 +98,8 @@ export async function translateJSON({
   json,
   sourceLanguage = 'en',
   targetLanguages,
-  preservePlaceholders = false
+  preservePlaceholders = false,
+  enablePluralization = true
 }) {
   if (!API_KEY) {
     throw new Error('VITE_SHIPI18N_API_KEY environment variable is not set')
@@ -122,7 +127,8 @@ export async function translateJSON({
       text: jsonString,
       sourceLanguage,
       targetLanguages: JSON.stringify(targetLanguages),
-      preservePlaceholders: String(preservePlaceholders)
+      preservePlaceholders: String(preservePlaceholders),
+      enablePluralization: String(enablePluralization)
     })
   })
 

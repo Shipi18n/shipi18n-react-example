@@ -12,6 +12,7 @@ This example demonstrates:
 - ✅ **Multi-language translation** in a single API call - translate to 100+ languages at once
 - ✅ **JSON translation** with structure preservation
 - ✅ **Placeholder preservation** for dynamic content (`{name}`, `{{value}}`, `%s`, etc.)
+- ✅ **i18next pluralization support** - Auto-generate plural forms based on CLDR rules
 - ✅ **Basic text translation** for quick testing
 - ✅ **Error handling** and loading states
 - ✅ **Native fetch API** (zero external HTTP dependencies)
@@ -200,6 +201,59 @@ console.log(result)
 // }
 ```
 
+### i18next Pluralization
+
+Shipi18n automatically generates CLDR-compliant plural forms for i18next. Different languages require different plural forms:
+
+- **English/Spanish**: `_one`, `_other` (2 forms)
+- **Russian**: `_one`, `_few`, `_many`, `_other` (4 forms)
+- **Arabic**: `_zero`, `_one`, `_two`, `_few`, `_many`, `_other` (6 forms)
+- **Chinese/Japanese**: `_other` only (1 form)
+
+```javascript
+import { translateJSON } from './lib/shipi18n'
+
+// Input with English plural keys
+const result = await translateJSON({
+  json: {
+    "item_one": "{{count}} item",
+    "item_other": "{{count}} items"
+  },
+  targetLanguages: ['es', 'ru'],
+  preservePlaceholders: true,
+  enablePluralization: true  // enabled by default
+})
+
+console.log(result)
+// Spanish (2 forms):
+// {
+//   es: {
+//     "item_one": "{{count}} artículo",
+//     "item_other": "{{count}} artículos"
+//   }
+// }
+//
+// Russian (4 forms auto-generated):
+// {
+//   ru: {
+//     "item_one": "{{count}} элемент",
+//     "item_few": "{{count}} элемента",
+//     "item_many": "{{count}} элементов",
+//     "item_other": "{{count}} элементов"
+//   }
+// }
+```
+
+To disable pluralization (for non-i18next projects):
+
+```javascript
+const result = await translateJSON({
+  json: { ... },
+  targetLanguages: ['es'],
+  enablePluralization: false
+})
+```
+
 ## API Reference
 
 ### `translate(options)`
@@ -212,6 +266,7 @@ Translate text to one or more languages.
 - `sourceLanguage` (string, optional) - Source language code (default: 'en')
 - `targetLanguages` (array, required) - Array of target language codes
 - `preservePlaceholders` (boolean, optional) - Preserve placeholders (default: false)
+- `enablePluralization` (boolean, optional) - Auto-generate i18next plural forms (default: true)
 
 **Returns:** Promise<Object> - Translation results keyed by language code
 
@@ -225,6 +280,7 @@ Translate JSON while preserving structure.
 - `sourceLanguage` (string, optional) - Source language code (default: 'en')
 - `targetLanguages` (array, required) - Array of target language codes
 - `preservePlaceholders` (boolean, optional) - Preserve placeholders (default: false)
+- `enablePluralization` (boolean, optional) - Auto-generate i18next plural forms (default: true)
 
 **Returns:** Promise<Object> - Translated JSON objects keyed by language code
 
