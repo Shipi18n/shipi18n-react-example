@@ -1,5 +1,9 @@
 # Shipi18n React Example
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Shipi18n/shipi18n-react-example)](https://github.com/Shipi18n/shipi18n-react-example)
+[![CI](https://github.com/Shipi18n/shipi18n-react-example/actions/workflows/ci.yml/badge.svg)](https://github.com/Shipi18n/shipi18n-react-example/actions)
+
 A minimal React application demonstrating how to integrate the [Shipi18n](https://shipi18n.com) translation API into your project.
 
 > **🚀 Get Started in 30 Seconds**: Sign up at [shipi18n.com](https://shipi18n.com) to get your free API key instantly. No credit card required!
