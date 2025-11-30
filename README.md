@@ -1,7 +1,6 @@
 # Shipi18n React Example
 
 [![CI](https://github.com/Shipi18n/shipi18n-react-example/actions/workflows/ci.yml/badge.svg)](https://github.com/Shipi18n/shipi18n-react-example/actions)
-[![codecov](https://codecov.io/gh/Shipi18n/shipi18n-react-example/branch/main/graph/badge.svg)](https://codecov.io/gh/Shipi18n/shipi18n-react-example)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Shipi18n/shipi18n-react-example)](https://github.com/Shipi18n/shipi18n-react-example)
 
