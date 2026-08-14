@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+coverage/
+
+# Environment — never commit a key
+.env
+.env.local
+.env.*.local
+
+# Logs / editor / OS
+*.log
+npm-debug.log*
+.DS_Store
+.idea/
+.vscode/

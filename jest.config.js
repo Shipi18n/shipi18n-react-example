@@ -12,5 +12,9 @@ export default {
   transform: {
     '^.+\\.(js|jsx)$': 'babel-jest',
   },
+  // Style imports are a build-time concern; stub them so jest can parse components.
+  moduleNameMapper: {
+    '\\.(css|sass|scss|less)$': '<rootDir>/__mocks__/styleMock.cjs',
+  },
   moduleFileExtensions: ['js', 'jsx'],
 };
